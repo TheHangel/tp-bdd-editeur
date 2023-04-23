@@ -1,0 +1,138 @@
+﻿<Window x:Class="TpBddEditeur.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TpBddEditeur"
+        mc:Ignorable="d"
+        Title="BDD Editeur" Height="450" Width="800"
+        MinHeight="450" MinWidth="800"
+        HorizontalAlignment="Stretch"
+        VerticalAlignment="Stretch">
+
+    <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Label x:Name="helloUserLabel" Content="Label" Grid.Column="2" HorizontalAlignment="Right" Margin="529,3,0,0" VerticalAlignment="Top" Width="169"/>
+        <TabControl x:Name="tabs" HorizontalAlignment="Stretch" Height="419" VerticalAlignment="Stretch" Width="792">
+            <TabItem Header="Auteurs">
+                <Grid Background="#FFE5E5E5" Margin="0,0,-449,-1" HorizontalAlignment="Left" Width="1235">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="listeViewAuthors" SelectionChanged="listeViewAuthors_SelChanged" Height="349" Margin="23,26,443,17" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.367,0.438" Grid.Column="2" Width="250">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock>
+                                        <Run Text="{Binding FirstName}" FontWeight="Bold"/>
+                                        <Run Text="{Binding LastName}" FontWeight="Bold"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <TextBox x:Name="textBoxAuthorsFirstName" HorizontalAlignment="Left" Height="23" Margin="308,94,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
+                    <TextBox x:Name="textBoxAuthorsLastName" HorizontalAlignment="Left" Height="23" Margin="308,158,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
+                    <Label Content="Prénom" HorizontalAlignment="Left" Margin="308,68,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.132,-0.077" Grid.Column="2"/>
+                    <Label Content="Nom" HorizontalAlignment="Left" Margin="308,132,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                    <TextBox x:Name="textBoxAuthorsISBN" HorizontalAlignment="Left" Height="23" Margin="308,228,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Grid.Column="2"/>
+                    <Label Content="ISBN" HorizontalAlignment="Left" Margin="308,202,0,0" VerticalAlignment="Top" Grid.Column="2"/>
+                    <Button x:Name="addAuthorButton" Click="AddAuthorClick" Content="Ajouter un auteur" Grid.Column="2" HorizontalAlignment="Left" Margin="308,281,0,0" VerticalAlignment="Top" Width="120" Height="40"/>
+                    <ListView x:Name="authorsSelectedBooks" Height="266" Margin="510,109,-20,17" HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.367,0.438" Grid.Column="2" Width="238" Grid.ColumnSpan="2" SelectionChanged="authorsSelectedBooks_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock>
+                                        <Run Text="{Binding ISBN}" FontWeight="Bold"/>
+                                        <Run Text="{Binding Title}" FontWeight="Bold"/>
+                                        <Run Text="{Binding PublicationDate}" FontWeight="Bold"/>
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Livres">
+                <Grid Background="#FFE5E5E5">
+                    <ListView x:Name="listeViewBooks" SelectionChanged="listeViewBooks_SelChanged" Height="317" Margin="72,41,437,0" VerticalAlignment="Top" RenderTransformOrigin="0.367,0.438">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock>
+                                        <Run Text="{Binding Title}" FontWeight="Bold" />
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <TextBox x:Name="textBoxBookTitle" HorizontalAlignment="Left" Height="23" Margin="411,87,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="288"/>
+                    <TextBox x:Name="textBoxBookDate" HorizontalAlignment="Left" Height="23" Margin="411,151,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Titre" HorizontalAlignment="Left" Margin="411,61,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.132,-0.077"/>
+                    <Label Content="Date de publication" HorizontalAlignment="Left" Margin="411,125,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxBookISBN" HorizontalAlignment="Left" Height="23" Margin="411,296,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="ISBN" HorizontalAlignment="Left" Margin="411,270,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="textBoxBookPrice" HorizontalAlignment="Left" Height="23" Margin="411,221,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Prix" HorizontalAlignment="Left" Margin="411,195,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Devise" HorizontalAlignment="Left" Margin="536,195,0,0" VerticalAlignment="Top"/>
+                    <ComboBox x:Name="currenciesCombo" HorizontalAlignment="Left" Margin="536,221,0,0" VerticalAlignment="Top" Width="53" SelectionChanged="currenciesCombo_SelectionChanged" RenderTransformOrigin="-0.34,0.409">
+                        <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel Orientation="Horizontal">
+                                    <TextBlock Text="{Binding Currency}" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                    </ComboBox>
+                    <Button x:Name="addBookButton" Content="Ajouter un livre" HorizontalAlignment="Left" Margin="409,336,0,0" VerticalAlignment="Top" Width="180" Height="34" Click="addBookButton_Click"/>
+                    <Label Content="Auteur :" HorizontalAlignment="Left" Margin="657,203,0,0" VerticalAlignment="Top" RenderTransformOrigin="0.043,0.654"/>
+                    <Label Content="Nom" HorizontalAlignment="Left" Margin="623,268,0,0" VerticalAlignment="Top"/>
+                    <Label HorizontalAlignment="Left" Margin="623,278,0,0" VerticalAlignment="Top"/>
+                    <TextBox x:Name="nomFromBookBox" HorizontalAlignment="Left" Height="23" Margin="623,298,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="prenomFromBookBox" HorizontalAlignment="Left" Height="23" Margin="623,347,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <Label Content="Prénom" HorizontalAlignment="Left" Margin="623,321,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="deleteBookButon" Content="Supprimer le livre sélectionné" HorizontalAlignment="Left" Margin="594,135,0,0" VerticalAlignment="Top" Height="39" Width="178" Click="deleteBookButon_Click"/>
+                    <TextBox x:Name="isbnAuthorFromBook" HorizontalAlignment="Left" Margin="623,246,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" Height="22"/>
+                    <Label Content="ISBN" HorizontalAlignment="Left" Margin="625,220,0,0" VerticalAlignment="Top"/>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="userTab" Header="Utilisateurs" HorizontalAlignment="Left" Height="20" VerticalAlignment="Top" Width="70">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="31*"/>
+                        <ColumnDefinition Width="755*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="usersListView" Grid.Column="1" HorizontalAlignment="Left" Height="314" Margin="52,46,0,0" VerticalAlignment="Top" Width="272" SelectionChanged="usersListView_SelectionChanged">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <TextBlock>
+                                        <Run Text="{Binding Nom}" FontWeight="Bold" />
+                                        <Run Text="{Binding Prenom}" FontWeight="Bold" />
+                                        <Run Text="[ alias" FontWeight="Bold" />
+                                        <Run Text="{Binding Login}" FontWeight="Bold" />
+                                        <Run Text="]" FontWeight="Bold" />
+                                    </TextBlock>
+                                </StackPanel>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <TextBox x:Name="nomBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="389,105,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="prenomBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="389,163,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <TextBox x:Name="mdpBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="389,223,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120"/>
+                    <CheckBox x:Name="gestionnaireCheckbox" Content="Gestionnaire" Grid.Column="1" HorizontalAlignment="Left" Margin="389,269,0,0" VerticalAlignment="Top"/>
+                    <Button x:Name="modifUserButton" Content="Modifier l'utilisateur sélectionné" Grid.Column="1" HorizontalAlignment="Left" Margin="541,105,0,0" VerticalAlignment="Top" Width="190" Height="38" Click="modifUserButton_Click"/>
+                    <Button x:Name="addUserButton" Content="Ajouter un utilisateur" Grid.Column="1" HorizontalAlignment="Left" Margin="541,179,0,0" VerticalAlignment="Top" Width="190" Height="38" Click="addUserButton_Click"/>
+                    <Label Content="Nom" Grid.Column="1" HorizontalAlignment="Left" Margin="389,79,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Prenom" Grid.Column="1" HorizontalAlignment="Left" Margin="389,137,0,0" VerticalAlignment="Top"/>
+                    <Label Content="Mot de passe" Grid.Column="1" HorizontalAlignment="Left" Margin="390,197,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.289,0.115"/>
+                    <Button x:Name="deleteUserButton" Grid.Column="1" Content="Supprimer l'utilisateur sélectionné" HorizontalAlignment="Left" Margin="541,246,0,0" VerticalAlignment="Top" Width="190" Height="38" Click="deleteUserButton_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
+        <Button x:Name="login_button" Content="Se connecter" HorizontalAlignment="Right" Margin="0,28,10,0" VerticalAlignment="Top" Width="93" Click="Login_Button" Height="24"/>
+        <Button Content="Configurer accès à la Base de données" HorizontalAlignment="Right" Margin="0,57,10,0" VerticalAlignment="Top" Width="224" Click="Connect_Button" Height="42"/>
+    </Grid>
+</Window>

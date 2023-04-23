@@ -1,0 +1,38 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Devart.Data.MySql.Linq" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration.Json" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="DataContextBddEditeur.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataContextBddEditeur.lqml</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+    <None Update="DataContextBddEditeur.Diagram1.view">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataContextBddEditeur.lqml</DependentUpon>
+    </None>
+    <None Update="DataContextBddEditeur.edps">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>DataContextBddEditeur.lqml</DependentUpon>
+    </None>
+    <None Update="DataContextBddEditeur.lqml">
+      <Generator>DevartLinqToSqlGenerator</Generator>
+      <LastGenOutput>DataContextBddEditeur.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+</Project>

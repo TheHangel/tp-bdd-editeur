@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Database Name="bddediteur" EntityNamespace="BddediteurContext" ContextNamespace="BddediteurContext" Class="BddediteurDataContext" xmlns:ed="http://devart.com/schemas/EntityDeveloper/1.0" ed:Guid="9a96d9e1-2bea-4ac4-84f0-485465a58191" Provider="Devart.Data.MySql.Linq.Provider.MySqlDataProvider, Devart.Data.MySql.Linq" Extended="true" xmlns="http://schemas.devart.com/linqconnect/mapping">
+  <Connection Mode="ConnectionString" ConnectionString="User Id=AdminEditeur;Password=@Password1234!;Host=localhost;Database=bddediteur;Persist Security Info=True" Provider="Devart.Data.MySql" />
+  <Table Name="bddediteur.bookauthors" Member="Bookauthors">
+    <Type Name="Bookauthor" ed:Guid="d41411f5-e9b8-42ef-8172-ff03a20aaaa8">
+      <Column Name="ISBN" Type="System.String" DbType="VARCHAR(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="10" ed:ValidateMaxLength="10" ed:ValidateRequired="true" ed:Guid="266d3370-b1c0-4b7c-8100-689c0b47fa16" />
+      <Column Name="FirstName" Type="System.String" DbType="VARCHAR(50) NULL" CanBeNull="true" UpdateCheck="Never" DefaultValue="&quot;NULL&quot;" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="49246e16-9cc5-44d0-a49f-b0d8f27ebe3b" />
+      <Column Name="LastName" Type="System.String" DbType="VARCHAR(50) NULL" CanBeNull="true" UpdateCheck="Never" DefaultValue="&quot;NULL&quot;" MaxLength="50" ed:ValidateMaxLength="50" ed:ValidateRequired="false" ed:Guid="0612753e-d690-4958-8f57-a2cb1c5c6442" />
+    </Type>
+  </Table>
+  <Table Name="bddediteur.booklist" Member="Booklists">
+    <Type Name="Booklist" ed:Guid="5bac1579-8de5-4b36-aa10-d2bffa3f279e">
+      <Column Name="ISBN" Type="System.String" DbType="VARCHAR(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="10" ed:ValidateMaxLength="10" ed:ValidateRequired="true" ed:Guid="a1febce0-466c-4ae4-8f5d-c7141dc3727b" />
+      <Column Name="Title" Type="System.String" DbType="VARCHAR(255) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="255" ed:ValidateMaxLength="255" ed:ValidateRequired="true" ed:Guid="355d332d-649c-4150-8105-b78c7f19e134" />
+      <Column Name="PublicationDate" Type="System.DateTime" DbType="DATETIME NULL" CanBeNull="true" UpdateCheck="Never" DefaultValue="NULL" ed:ValidateRequired="false" ed:Guid="f82a81f1-afc5-4390-8dbb-6739b2c4bc63" />
+    </Type>
+  </Table>
+  <Table Name="bddediteur.bookprices" Member="Bookprices">
+    <Type Name="Bookprice" ed:Guid="75e05b58-1411-42b0-a10a-148d15900026">
+      <Column Name="ISBN" Type="System.String" DbType="VARCHAR(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="10" ed:ValidateMaxLength="10" ed:ValidateRequired="true" ed:Guid="1ab79e9a-265d-4c88-aa2b-bebbfeaaea53" />
+      <Column Name="Currency" Type="System.String" DbType="VARCHAR(3) NOT NULL" IsPrimaryKey="true" CanBeNull="false" UpdateCheck="Always" MaxLength="3" ed:ValidateMaxLength="3" ed:ValidateRequired="true" ed:Guid="2d2552b6-a44b-4bfc-85b3-ef95912b61b1" />
+      <Column Name="Price" Type="System.Decimal" DbType="DECIMAL(5,2) NULL" CanBeNull="true" UpdateCheck="Never" DefaultValue="NULL" Precision="5" Scale="2" ed:ValidateRequired="false" ed:Guid="2396c363-8857-4d2e-925f-2909bb237963" />
+    </Type>
+  </Table>
+  <Table Name="bddediteur.users" Member="Users">
+    <Type Name="User" ed:Guid="9f9fd900-7810-4d07-b437-58d213d57e26">
+      <Column Name="Id" Type="System.Int32" AutoSync="OnInsert" DbType="SMALLINT(5) UNSIGNED NOT NULL AUTO_INCREMENT" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" UpdateCheck="Always" Precision="5" ed:ValidateRequired="true" ed:Guid="a0cb7132-b8ef-4b7f-92fe-0254ab1b7669" />
+      <Column Name="Nom" Type="System.String" DbType="VARCHAR(15) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="15" ed:ValidateMaxLength="15" ed:ValidateRequired="true" ed:Guid="dac8a0c0-a691-45c0-afa7-2385953d2850" />
+      <Column Name="Prenom" Type="System.String" DbType="VARCHAR(15) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="15" ed:ValidateMaxLength="15" ed:ValidateRequired="true" ed:Guid="c14d25a6-afb7-4844-af5f-a6e9f4bbba05" />
+      <Column Name="Login" Type="System.String" DbType="VARCHAR(10) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="10" ed:ValidateMaxLength="10" ed:ValidateRequired="true" ed:Guid="6732b579-cb07-45fa-8ed1-67453f68ecab" />
+      <Column Name="Mdp" Type="System.String" DbType="VARCHAR(10) NOT NULL" CanBeNull="false" UpdateCheck="Never" MaxLength="10" ed:ValidateMaxLength="10" ed:ValidateRequired="true" ed:Guid="f7779ad4-82cc-469d-a984-399ed06af140" />
+      <Column Name="Autorisation" Type="System.Boolean" DbType="TINYINT(1) NOT NULL" CanBeNull="false" UpdateCheck="Never" ed:ValidateRequired="true" ed:Guid="ba0eeef0-25bd-4672-9fa4-fdb66268587e" />
+    </Type>
+  </Table>
+</Database>
